@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J Juliana Franka | AIML Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0c1a;
+      --bg2: #15122a;
+      --bg3: #1c1836;
+      --border: rgba(83, 74, 183, 0.25);
+      --border2: rgba(83, 74, 183, 0.5);
+      --purple-dark: #26215C;
+      --purple-mid: #3C3489;
+      --purple: #534AB7;
+      --purple-light: #7F77DD;
+      --purple-pale: #AFA9EC;
+      --purple-ghost: #CECBF6;
+      --text: #e8e6f8;
+      --text2: #a09dc0;
+      --text3: #6b6890;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,12,26,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-size: 16px; font-weight: 600; color: var(--purple-pale); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--purple-pale); }
+
+    /* LAYOUT */
+    .port { max-width: 880px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .avatar {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: var(--purple-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; font-weight: 600; color: var(--purple-ghost);
+      margin: 0 auto 1.2rem;
+      border: 2px solid var(--purple);
+      box-shadow: 0 0 0 6px rgba(83,74,183,0.12);
+    }
+    .hero h1 { font-size: 32px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .hero .role { font-size: 16px; color: var(--purple-light); font-weight: 500; margin-bottom: 4px; }
+    .hero .college { font-size: 13px; color: var(--text3); margin-bottom: 1.5rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .tag {
+      font-size: 12px; padding: 5px 14px; border-radius: 20px;
+      background: var(--purple-dark); color: var(--purple-pale);
+      font-weight: 500; border: 0.5px solid var(--border2);
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 3rem; }
+    .section-title {
+      font-size: 11px; font-weight: 600; color: var(--purple-light);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 1.2rem; padding-bottom: 8px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* ABOUT */
+    .about-card {
+      background: var(--bg2);
+      border-radius: 12px; padding: 1.4rem 1.5rem;
+      font-size: 15px; color: var(--text); line-height: 1.8;
+      border-left: 3px solid var(--purple);
+      border: 0.5px solid var(--border);
+      border-left: 3px solid var(--purple);
+    }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .skill-card {
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.1rem;
+      transition: border-color 0.2s;
+    }
+    .skill-card:hover { border-color: var(--border2); }
+    .skill-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 10px; }
+    .skill-bar-bg { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+    .skill-bar { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--purple), var(--purple-light)); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .proj-card {
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 1.3rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
+    .proj-title { font-size: 15px; font-weight: 600; color: var(--text); }
+    .proj-badge {
+      font-size: 11px; padding: 3px 9px; border-radius: 12px;
+      background: var(--purple-dark); color: var(--purple-pale);
+      white-space: nowrap; border: 0.5px solid var(--border2);
+    }
+    .proj-desc { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tech-pill {
+      font-size: 11px; padding: 3px 9px; border-radius: 10px;
+      background: var(--bg3); color: var(--text3);
+      border: 0.5px solid var(--border);
+    }
+
+    /* CERTIFICATIONS */
+    .cert-list { display: flex; flex-direction: column; gap: 10px; }
+    .cert-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+      transition: border-color 0.2s;
+    }
+    .cert-item:hover { border-color: var(--border2); }
+    .cert-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+    .cert-name { font-size: 14px; font-weight: 500; color: var(--text); }
+    .cert-org { font-size: 12px; color: var(--text3); }
+
+    /* CONTACT */
+    .contact-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 10px;
+      border: 0.5px solid var(--border2);
+      font-size: 13px; font-weight: 500;
+      color: var(--purple-pale); background: var(--purple-dark);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .contact-btn:hover { background: var(--purple-mid); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 12px; color: var(--text3);
+      border-top: 0.5px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; }
+      .nav-links { display: none; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">JF</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="port">
+
+  <div class="hero">
+    <div class="avatar">JF</div>
+    <h1>J Juliana Franka</h1>
+    <div class="role">AI & Machine Learning Engineer</div>
+    <div class="college">SRM Easwari Engineering College &middot; Chennai &middot; 2nd Year B.Tech AIML</div>
+    <div class="tags">
+      <span class="tag">Artificial Intelligence</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Data Science</span>
+      <span class="tag">Python</span>
+    </div>
+  </div>
+
+  <div class="section" id="about">
+    <div class="section-title">About</div>
+    <div class="about-card">
+      Hi, I'm Juliana — a 2nd year B.Tech student specializing in Artificial Intelligence and Machine Learning at SRM Easwari Engineering College, Chennai. I'm passionate about building intelligent systems, exploring data patterns, and applying deep learning to real-world problems. Always learning, always building.
+    </div>
+  </div>
+
+  <div class="section" id="skills">
+    <div class="section-title">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-name">Python</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">NumPy & Pandas</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Machine Learning</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:72%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Deep Learning</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:60%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Data Visualization</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">TensorFlow / Keras</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:58%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <div class="section-title">Projects</div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Sentiment Analyzer</span>
+          <span class="proj-badge">NLP</span>
+        </div>
+        <p class="proj-desc">Classifies movie reviews as positive or negative using Naive Bayes trained on the IMDB dataset.</p>
+        <div class="proj-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Scikit-learn</span>
+          <span class="tech-pill">NLTK</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">House Price Predictor</span>
+          <span class="proj-badge">Regression</span>
+        </div>
+        <p class="proj-desc">Predicts housing prices using linear regression with feature engineering on real estate data.</p>
+        <div class="proj-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">Matplotlib</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Digit Classifier</span>
+          <span class="proj-badge">Deep Learning</span>
+        </div>
+        <p class="proj-desc">CNN model for handwritten digit recognition on MNIST dataset achieving 98%+ accuracy.</p>
+        <div class="proj-tech">
+          <span class="tech-pill">TensorFlow</span>
+          <span class="tech-pill">Keras</span>
+          <span class="tech-pill">NumPy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="certifications">
+    <div class="section-title">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">Machine Learning Crash Course</div>
+          <div class="cert-org">Google &middot; 2024</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">Python for Everybody</div>
+          <div class="cert-org">Coursera &middot; University of Michigan &middot; 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="section-title">Contact</div>
+    <div class="contact-row">
+      <a class="contact-btn" href="https://github.com/" target="_blank">GitHub</a>
+      <a class="contact-btn" href="https://linkedin.com/" target="_blank">LinkedIn</a>
+      <a class="contact-btn" href="mailto:your@email.com">Email</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 J Juliana Franka &middot; Built with passion for AI &amp; ML
+</footer>
+
+</body>
+</html>
